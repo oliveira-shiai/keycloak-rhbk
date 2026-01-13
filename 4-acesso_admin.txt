@@ -1,0 +1,27 @@
+############ VISUALIZAR A SENHA DO USUÁRIO temp_admin ############
+
+
+oc get secret keycloak-initial-admin -n rhbk -o jsonpath="{.data.username}" | base64 -d && echo
+oc get secret keycloak-initial-admin -n rhbk -o jsonpath="{.data.password}" | base64 -d && echo
+
+
+
+
+#######   CRIAR NOVO USUÁRIO ADMIN   ##########
+Acessar a Consoler Web com usuário "temp_admin" e seguir passo a passo abaixo:
+
+Users --> Add User -->
+Username: admin
+Create
+
+Credentials --> Set password
+Password: Senha123
+Temporary: Off
+Save
+Save password
+
+Role mapping
+Assign role
+Filter by realm roles
+click em admin
+Assign

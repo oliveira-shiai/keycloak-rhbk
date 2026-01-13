@@ -1,0 +1,35 @@
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  name: keycloak
+  labels:
+    app: sso
+  namespace: rhbk
+spec:
+  networkPolicy:
+    enabled: true
+  http:
+    tlsSecret: keycloak-tls
+  update:
+    strategy: RecreateOnImageChange
+  hostname:
+    hostname: keycloak-rhbk.apps.rosa.rosa-55bfv.s50y.p3.openshiftapps.com
+  db:
+    usernameSecret:
+      key: db-user
+      name: postgredb-secret
+    passwordSecret:
+      key: db-password
+      name: postgredb-secret
+    port: 5432
+    vendor: postgres
+    host: postgredb.rhbk.svc
+    database: keycloakdb
+  instances: 1
+  resources:
+    requests:
+      cpu: 1200m
+      memory: 896Mi
+    limits:
+      cpu: 3
+      memory: 2Gi  

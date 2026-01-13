@@ -1,0 +1,18 @@
+##### EXPORTAR AS VARIAVEIS ######
+
+KEYCLOAK_URL="https://keycloak-rhbk.apps.rosa.rosa-55bfv.s50y.p3.openshiftapps.com"
+
+CLIENT_ID="spring-artemis-producer-client"
+
+CLIENT_SECRET="UMFe7djDAX99GwE2iJjm2OX3vDyuFBmF" 
+
+ACCESS_TOKEN=$(curl -s -k -X POST \
+  "$KEYCLOAK_URL/realms/apps/protocol/openid-connect/token" \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d "grant_type=client_credentials&client_id=$CLIENT_ID&client_secret=$CLIENT_SECRET" | \
+  jq -r '.access_token')
+
+
+##### CONSULTAR TOKEN ######
+
+echo "Access Token: $ACCESS_TOKEN"

@@ -1,0 +1,15 @@
+################## CRIAR PAR DE CHAVES
+
+openssl req -x509 -nodes -newkey rsa:2048 \
+  -keyout keycloak-tls.key \
+  -out keycloak-tls.crt \
+  -days 3650 \
+  -subj "/CN=keycloak-service.rhbk.svc.cluster.local" \
+  -addext "subjectAltName = DNS:keycloak-service.rhbk.svc.cluster.local,DNS:keycloak.rhbk.svc,DNS:localhost"
+
+################### CRIAR SECRET
+
+oc create secret tls keycloak-tls \
+  --cert=keycloak-tls.crt \
+  --key=keycloak-tls.key \
+  -n rhbk
