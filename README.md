@@ -52,4 +52,4 @@ Para o cenário de DR em servidores RHEL:
 * **Ativação:** O serviço só deve ser iniciado em caso de failover real.
 
 ---
-**Elaborado por:** Joel Pedro Neto, Middleware TAM - Red Hat.
+
