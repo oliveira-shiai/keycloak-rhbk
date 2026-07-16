@@ -6,6 +6,9 @@ metadata:
     app: sso
   namespace: rhbk
 spec:
+  additionalOptions:
+    - name: metrics-enabled
+      value: 'true'
   networkPolicy:
     enabled: true
   http:
