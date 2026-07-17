@@ -9,6 +9,7 @@ spec:
   additionalOptions:
     - name: metrics-enabled
       value: 'true'
+  #image: 'image-registry.openshift-image-registry.svc:5000/rhbk/rhbk-custom:26.4.19-dev'      
   networkPolicy:
     enabled: true
   http:
