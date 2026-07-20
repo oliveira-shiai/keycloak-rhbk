@@ -1,0 +1,23 @@
+# --- ETAPA 1: BUILDER ---
+FROM registry.redhat.io/rhbk/keycloak-rhel9:26.4-19 AS builder
+
+ENV KC_HEALTH_ENABLED=true
+ENV KC_METRICS_ENABLED=true
+
+# Alterar o "ENV KC_DB" de acordo com o Banco de Dados utilizado "postgres", "mssql", "oracle"  
+ENV KC_DB=postgres
+
+## Para Banco de dados SQL Server ou Oracle
+# Copia o driver da sua máquina local para a pasta providers do Keycloak
+# O parâmetro --chown já garante as permissões corretas
+# COPY --chown=keycloak:keycloak mssql-jdbc-13.4.0.jre11.jar /opt/keycloak/providers/
+##
+
+# Executa a compilação
+RUN /opt/keycloak/bin/kc.sh build
+
+# --- ETAPA 2: IMAGEM FINAL ---
+FROM registry.redhat.io/rhbk/keycloak-rhel9:26.4-19
+
+# Copia a instalação limpa e otimizada da etapa anterior
+COPY --from=builder /opt/keycloak/ /opt/keycloak/
