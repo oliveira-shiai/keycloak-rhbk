@@ -1,4 +1,4 @@
-# Red Hat Build of Keycloak (RHBK) 26.2 no OpenShift - Laboratório POC
+# Red Hat Build of Keycloak (RHBK) 26.x no OpenShift - Laboratório POC
 
 Este repositório contém os guias e manifestos para a implementação do Red Hat Build of Keycloak (RHBK) 26.2 via Operator no OpenShift. O objetivo desta POC é configurar um ambiente com Alta Disponibilidade (HA), automação via CRDs e estratégia de Disaster Recovery (DR).
 
